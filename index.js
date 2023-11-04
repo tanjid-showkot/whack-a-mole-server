@@ -32,7 +32,7 @@ async function run() {
         const userdata = database.collection("userdata");
         const multi = database.collection("multi");
 
-        app.get("/userdata", async (req, res) => {
+        app.get('/userdata', async (req, res) => {
             const result = await userdata.find().toArray();
             res.send(result);
         });
