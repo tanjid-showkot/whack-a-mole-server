@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "./index.js",
+            "src": "index.js",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "./index.js",
+            "dest": "index.js",
             "methods": [
                 "GET",
                 "POST",
@@ -19,7 +19,8 @@
                 "OPTIONS"
             ],
             "headers": {
-                "Access-Control-Allow-Origin": "*"
+                "Access-Control-Allow-Origin": "*",
+                "contentSecurityPolicy": "script-src 'self' 'unsafe-eval' https://vercel.live/_next-live/feedback/feedback.js 'unsafe-inline'; object-src 'self'"
             }
         }
     ]

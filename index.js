@@ -1,16 +1,12 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const corsOptions = {
-    origin: '*',
-    credentials: true,            //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
-}
 
 
 
 
-app.use(cors(corsOptions))
+
+app.use(cors())
 app.use(express.json())
 require('dotenv').config();
 const port = process.env.PORT || 5000;
@@ -31,12 +27,12 @@ const client = new MongoClient(uri, {
 async function run() {
     try {
         // Connect the client to the server	(optional starting in v4.7)
-        await client.connect();
+        client.connect();
         const database = client.db("whackamole");
         const userdata = database.collection("userdata");
         const multi = database.collection("multi");
 
-        app.get('/userdata', async (req, res) => {
+        app.get("/userdata", async (req, res) => {
             const result = await userdata.find().toArray();
             res.send(result);
         });
